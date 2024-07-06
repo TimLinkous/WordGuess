@@ -1,42 +1,91 @@
 //Tim Linkous
+import java.lang.classfile.instruction.IncrementInstruction;
+import java.util.Enumeration;
 import java.util.Scanner;
 import java.util.Random;
 
 public class WordGuess {
-    private final String [] myWords = {"base", "walk", "ball", "home", "team"};
-//    String correctWord;
-//    char [] playerGuess;
-//    int attempts = maxAttempts;
-//    int maxAttempts = 5;
-//    boolean inWordGuessed = false;
     Scanner scanner = new Scanner(System.in);
-    Random random = new Random();
+    Random random = new Random();private final String[] myWords = {"base", "walk", "ball", "home", "team"};
+    int randomNumber = random.nextInt(myWords.length);
+    char randomWord[] = myWords[randomNumber].toCharArray();
+    int numberOfGuesses = randomWord.length;
+    char playerGuess[] = new char[numberOfGuesses];
 
 
     public void initialize_game_state(){
-        correctWord = myWords[random.nextInt(myWords.length):
-        playerGuess = new char[];
         for (int i = 0; i < playerGuess.length; i++) {
-            playerGuess[i] = "_";
+            playerGuess[i] = '_';
         }
     }
-    public void announceGame(){
+    public void announceGame() {
         System.out.println("Let's Play Wordguess version 1.0");
     }
-    public void gameOver(){
+    public void gameOver() {
         System.out.println("GAME OVER.\n");
     }
-    public void playerWonMessage(){
+    public void playerWonMessage() {
         System.out.println("Congratulations, you won!\n");
     }
-    public void playerLostMessage(){
+    public void playerLostMessage() {
         System.out.println("You Lost! You ran out of guesses.\n");
     }
-    public void askToPlayAgain(){
+    public void askToPlayAgain() {
         System.out.println("Would you like to play again? (y/n)");
         Scanner playAgain = new Scanner(System.in);
-        }
+    }
 
+    public void blankWord (char [] array){
+        for (int = )
+    }
+
+    public static boolean isTheWordGuessed (char[] array){
+        boolean result = true;
+        for (int i = 0; i < array.length; i++){
+            if (array[i] == '_'){
+                result = false;
+            }
+        }
+        return result;
+    }
+    boolean runGame = true;
+    while(runGame){
+        announceGame();
+        initialize_game_state();
+
+        boolean wordIsGuessed = false;
+        int attempts = 0;
+
+        while (!wordIsGuessed && attempts != numberOfGuesses){
+            System.out.println("Current Guesses: " + playerGuess);
+            System.out.println("Please guess a single letter.");
+            char guess = scanner.nextLine().charAt(0);
+            attempts++;
+
+            if (guess == '-') {
+                wordIsGuessed = true;
+                gameIsBeingPlayed = false;
+            }else{
+                for (int i = 0; i < randomWord.length; i++){
+                    if (randomWord[i] == guess){
+                        playerGuess[i] = guess;
+                    }
+                }
+                if (isTheWordGuessed(playerGuess)){
+                    wordIsGuessed = true;
+                    playerWonMessage();
+                }
+            }
+        }
+        askToPlayAgain();
+        String answer = scanner.nextLine();
+        if (answer != "yes" || answer !="no"){
+            System.out.println("Not a valid input. Please enter yes or no to continue.");
+        }else if (answer == "yes"){
+
+
+        }
+    }
 }
 //announce_game() prints a welcome
 //game_over() prints "game over"
